@@ -32,10 +32,12 @@ export default function WatchLive() {
   const [likes, setLikes] = useState(18300);
   const [sheet, setSheet] = useState(false);
 
-  // Simulated realtime: a new chat line and a viewer change every ~1.6 s, ambient hearts.
+  // Simulated realtime: a burst of chat lines, viewer changes and hearts every ~1.6 s, then the
+  // room goes quiet (taps still add hearts) so UI automation can settle between steps.
   useEffect(() => {
     let i = 4;
     const t = setInterval(() => {
+      if (i >= 12) return clearInterval(t);
       const next = viewerChat[i % viewerChat.length];
       setComments((cs) => [...cs, { ...next, id: `${next.id}-${i}` }].slice(-6));
       setViewers((v) => v + ((i * 7) % 11) - 3);
@@ -58,12 +60,12 @@ export default function WatchLive() {
       <View style={[styles.top, { paddingTop: insets.top + 8 }]}>
         <View style={styles.hostChip}>
           <Avatar img={c.avatar} size={32} />
-          <T variant="label" numberOfLines={1} style={{ color: colors.white, fontFamily: font.semibold, maxWidth: 90 }}>{c.name}</T>
+          <T variant="label" numberOfLines={1} style={{ color: colors.white, fontFamily: font.semibold, flexShrink: 1 }}>{c.name}</T>
           <Pressable testID="watch-follow" accessibilityRole="button" onPress={() => toggleFollow(c.id)} style={[styles.follow, following && { backgroundColor: colors.overlay }]}>
             <T variant="caption" style={{ color: following ? colors.white : colors.accentFill, fontFamily: font.semibold }}>{following ? 'Following' : 'Follow'}</T>
           </Pressable>
         </View>
-        <View style={{ flex: 1 }} />
+        <View style={{ flex: 1, minWidth: 4 }} />
         <LivePill />
         <ViewerPill count={viewers} exact={grouped(viewers)} />
         <IconButton icon="x" label="Close" color={colors.white} testID="watch-close" onPress={() => (router.canGoBack() ? router.back() : router.replace('/home'))} />
@@ -123,9 +125,9 @@ function RailButton({ icon, label, onPress, testID }: { icon: 'heart' | 'gift' |
 }
 
 const styles = StyleSheet.create({
-  top: { position: 'absolute', left: 0, right: 0, top: 0, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12 },
-  hostChip: { flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: colors.overlay, borderRadius: radius.pill, padding: 4, paddingRight: 4 },
-  follow: { backgroundColor: colors.white, borderRadius: radius.pill, paddingHorizontal: 12, height: 30, justifyContent: 'center' },
+  top: { position: 'absolute', left: 0, right: 0, top: 0, flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 12, paddingRight: 4 },
+  hostChip: { flexShrink: 1, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.overlay, borderRadius: radius.pill, padding: 4, paddingRight: 4 },
+  follow: { backgroundColor: colors.white, borderRadius: radius.pill, paddingHorizontal: 10, height: 30, justifyContent: 'center' },
   hd: { position: 'absolute', right: 16, flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: colors.overlay, borderRadius: radius.pill, paddingHorizontal: 8, height: 22 },
   rail: { position: 'absolute', right: 12, top: '40%', gap: 16, alignItems: 'center' },
   railBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.overlay, alignItems: 'center', justifyContent: 'center' },

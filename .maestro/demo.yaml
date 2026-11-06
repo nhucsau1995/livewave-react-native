@@ -15,28 +15,34 @@ appId: com.livewave.app
 - startRecording: demo
 - tapOn:
     id: "get-started"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Nobody you follow is live"
     timeout: 15000
 - tapOn:
     id: "follow-lena"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Friday Night House Set"
     timeout: 15000
 - tapOn:
     id: "following-lena"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Say something.*"
     timeout: 15000
 - tapOn:
     id: "watch-gift"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Send a gift"
     timeout: 15000
 - tapOn:
     id: "gift-rocket"
+    waitToSettleTimeoutMs: 1500
 - tapOn:
     id: "send-gift"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Say something.*"
     timeout: 15000
@@ -44,16 +50,19 @@ appId: com.livewave.app
     timeout: 2000
 - tapOn:
     id: "watch-close"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Friday Night House Set"
     timeout: 15000
 - tapOn:
     id: "tab-golive"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Stream title"
     timeout: 15000
 - tapOn:
     id: "go-live"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "End"
     timeout: 15000
@@ -61,6 +70,7 @@ appId: com.livewave.app
     timeout: 2500
 - tapOn:
     id: "open-health"
+    waitToSettleTimeoutMs: 1500
 - extendedWaitUntil:
     visible: "Upload bitrate"
     timeout: 15000
