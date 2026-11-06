@@ -31,6 +31,9 @@ export default function WatchLive() {
   const [viewers, setViewers] = useState(2481);
   const [likes, setLikes] = useState(18300);
   const [sheet, setSheet] = useState(false);
+  const [cc, setCc] = useState(false);
+  const [more, setMore] = useState(false);
+  const [reported, setReported] = useState<string | null>(null);
 
   // Simulated realtime: a burst of chat lines, viewer changes and hearts every ~1.6 s, then the
   // room goes quiet (taps still add hearts) so UI automation can settle between steps.
@@ -61,8 +64,8 @@ export default function WatchLive() {
         <View style={styles.hostChip}>
           <Avatar img={c.avatar} size={32} />
           <T variant="label" numberOfLines={1} style={{ color: colors.white, fontFamily: font.semibold, flexShrink: 1 }}>{c.name}</T>
-          <Pressable testID="watch-follow" accessibilityRole="button" onPress={() => toggleFollow(c.id)} style={[styles.follow, following && { backgroundColor: colors.overlay }]}>
-            <T variant="caption" style={{ color: following ? colors.white : colors.accentFill, fontFamily: font.semibold }}>{following ? 'Following' : 'Follow'}</T>
+          <Pressable testID="watch-follow" accessibilityRole="button" accessibilityLabel={following ? 'Following, tap to unfollow' : 'Follow'} onPress={() => toggleFollow(c.id)} style={[styles.follow, following && styles.followed]}>
+            {following ? <Icon name="check" size={16} color={colors.text} /> : <T variant="caption" style={{ color: colors.accentFill, fontFamily: font.semibold }}>Follow</T>}
           </Pressable>
         </View>
         <View style={{ flex: 1, minWidth: 4 }} />
@@ -78,13 +81,36 @@ export default function WatchLive() {
       <View style={styles.rail}>
         <RailButton icon="heart" label={compact(likes)} onPress={like} testID="watch-like" />
         <RailButton icon="gift" label="Gift" onPress={() => setSheet(true)} testID="watch-gift-rail" />
+        <RailButton icon="type" label={cc ? 'CC on' : 'CC'} onPress={() => setCc(!cc)} testID="watch-cc" active={cc} />
         <RailButton icon="share-2" label="Share" />
-        <RailButton icon="more-horizontal" label="" />
+        <RailButton icon="more-horizontal" label="" onPress={() => setMore(!more)} testID="watch-more" />
       </View>
       <FloatingHearts ref={hearts} />
+      {more ? (
+        <View style={styles.moreMenu} testID="watch-more-menu">
+          {(['Report stream', `Block ${c.name}`, 'Not interested'] as const).map((label) => (
+            <Pressable key={label} onPress={() => { setReported(label); setMore(false); }} style={styles.moreItem}>
+              <Icon name={label.startsWith('Report') ? 'flag' : label.startsWith('Block') ? 'slash' : 'eye-off'} size={16} color={label.startsWith('Not') ? colors.text : colors.danger} />
+              <T variant="label" style={{ color: label.startsWith('Not') ? colors.text : colors.danger }}>{label}</T>
+            </Pressable>
+          ))}
+        </View>
+      ) : null}
+      {reported ? (
+        <Pressable onPress={() => setReported(null)} style={[styles.toast, { top: insets.top + 84 }]}>
+          <Icon name="check-circle" size={16} color={colors.success} />
+          <T variant="label" style={{ color: colors.text }}>{reported === 'Report stream' ? 'Thanks, our team will review this stream' : reported === 'Not interested' ? 'You will see fewer streams like this' : 'Creator blocked'}</T>
+        </Pressable>
+      ) : null}
 
       <View style={[styles.chat, { bottom: Math.max(insets.bottom, 12) + 72 }]} testID="watch-comments">
         {comments.map((m) => <CommentBubble key={m.id} c={m} />)}
+        {cc ? (
+          <View style={styles.caption} testID="live-caption">
+            <T variant="caption" style={{ color: colors.support, fontFamily: font.bold, fontSize: 12 }}>LIVE CAPTIONS</T>
+            <T variant="label" style={{ color: colors.white }}>{c.id === 'lena' ? '[guitar] "...and I will find my way back home tonight"' : '[music] Thanks for joining, everyone!'}</T>
+          </View>
+        ) : null}
       </View>
 
       <View style={[styles.bottom, { paddingBottom: Math.max(insets.bottom, 12) + 4 }]}>
@@ -115,10 +141,10 @@ export default function WatchLive() {
   );
 }
 
-function RailButton({ icon, label, onPress, testID }: { icon: 'heart' | 'gift' | 'share-2' | 'more-horizontal'; label: string; onPress?: () => void; testID?: string }) {
+function RailButton({ icon, label, onPress, testID, active }: { icon: 'heart' | 'gift' | 'share-2' | 'more-horizontal' | 'type'; label: string; onPress?: () => void; testID?: string; active?: boolean }) {
   return (
-    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label || 'More'} onPress={onPress} style={{ alignItems: 'center', gap: 2 }}>
-      <View style={styles.railBtn}><Icon name={icon} size={22} color={colors.white} /></View>
+    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label || 'More'} accessibilityState={active === undefined ? undefined : { selected: active }} onPress={onPress} style={{ alignItems: 'center', gap: 2 }}>
+      <View style={[styles.railBtn, active && { backgroundColor: colors.accentFill }]}><Icon name={icon} size={22} color={colors.white} /></View>
       {label ? <T variant="caption" style={{ color: colors.white, fontSize: 12, fontFamily: font.semibold }}>{label}</T> : null}
     </Pressable>
   );
@@ -128,8 +154,13 @@ const styles = StyleSheet.create({
   top: { position: 'absolute', left: 0, right: 0, top: 0, flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 12, paddingRight: 4 },
   hostChip: { flexShrink: 1, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.overlay, borderRadius: radius.pill, padding: 4, paddingRight: 4 },
   follow: { backgroundColor: colors.white, borderRadius: radius.pill, paddingHorizontal: 10, height: 30, justifyContent: 'center' },
+  followed: { backgroundColor: colors.support, width: 30, paddingHorizontal: 0, alignItems: 'center' },
+  caption: { backgroundColor: colors.overlayStrong, borderRadius: radius.control, paddingHorizontal: 12, paddingVertical: 8, marginTop: 4 },
+  moreMenu: { position: 'absolute', right: 64, top: '52%', backgroundColor: colors.surface, borderRadius: radius.control, paddingVertical: 4, minWidth: 190 },
+  moreItem: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14, height: 44 },
+  toast: { position: 'absolute', left: 16, right: 16, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: colors.surface, borderRadius: radius.pill, paddingHorizontal: 14, height: 44 },
   hd: { position: 'absolute', right: 16, flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: colors.overlay, borderRadius: radius.pill, paddingHorizontal: 8, height: 22 },
-  rail: { position: 'absolute', right: 12, top: '40%', gap: 16, alignItems: 'center' },
+  rail: { position: 'absolute', right: 12, top: '34%', gap: 14, alignItems: 'center' },
   railBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.overlay, alignItems: 'center', justifyContent: 'center' },
   chat: { position: 'absolute', left: 12, right: 84, gap: 6 },
   bottom: { position: 'absolute', left: 0, right: 0, bottom: 0, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 12 },
