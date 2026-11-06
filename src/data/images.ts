@@ -1,0 +1,30 @@
+// Every entry of assets/images.json, bundled locally (no remote URLs).
+export const images = {
+  heroWelcome: require('../../assets/images/hero-welcome.jpg'),
+  logo: require('../../assets/images/stitch-logo.png'),
+  avatarMaya: require('../../assets/images/avatar-maya.jpg'),
+  avatarLena: require('../../assets/images/avatar-lena.jpg'),
+  avatarMarco: require('../../assets/images/avatar-marco.jpg'),
+  avatarAiko: require('../../assets/images/avatar-aiko.jpg'),
+  avatarSam: require('../../assets/images/avatar-sam.jpg'),
+  avatarKenji: require('../../assets/images/avatar-kenji.jpg'),
+  avatarSofia: require('../../assets/images/avatar-sofia.jpg'),
+  streamDjKairo: require('../../assets/images/stream-dj-kairo.jpg'),
+  streamPasta: require('../../assets/images/stream-pasta.jpg'),
+  streamAcoustic: require('../../assets/images/stream-acoustic.jpg'),
+  streamHiit: require('../../assets/images/stream-hiit.jpg'),
+  streamLisbon: require('../../assets/images/stream-lisbon.jpg'),
+  streamPainter: require('../../assets/images/stream-painter.jpg'),
+  streamChefPlating: require('../../assets/images/stream-chef-plating.jpg'),
+  streamSaxophone: require('../../assets/images/stream-saxophone.jpg'),
+  emptyStudioDesk: require('../../assets/images/empty-studio-desk.jpg'),
+  coverLenaStudio: require('../../assets/images/cover-lena-studio.jpg'),
+  replayPiano: require('../../assets/images/replay-piano.jpg'),
+  replayPainting: require('../../assets/images/replay-painting.jpg'),
+  replayCityWalk: require('../../assets/images/replay-city-walk.jpg'),
+  liveLena: require('../../assets/images/live-lena.jpg'),
+  hostPreview: require('../../assets/images/host-preview.jpg'),
+  liveHostCoffee: require('../../assets/images/live-host-coffee.jpg'),
+};
+
+export type ImageKey = keyof typeof images;
