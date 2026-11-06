@@ -78,6 +78,7 @@ const defaultSettings: Settings = {
 };
 
 let idSeq = 0;
+let timer: ReturnType<typeof setInterval> | null = null;
 const nid = (p: string) => `${p}-${++idSeq}`;
 
 // Incoming host-room events, replayed in order on the broadcast timer.
@@ -155,6 +156,9 @@ export const useApp = create<State>((set, get) => ({
         latencySamples: [318, 305, 322],
       },
     });
+    // One broadcast clock for the whole host flow (room, health screen), stopped by endLive.
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => get().tick(), 1000);
   },
 
   tick: () =>
@@ -224,7 +228,9 @@ export const useApp = create<State>((set, get) => ({
       return { session: { ...live, comments } };
     }),
 
-  endLive: () =>
+  endLive: () => {
+    if (timer) clearInterval(timer);
+    timer = null;
     set((s) => {
       const live = s.session;
       if (!live) return {};
@@ -233,5 +239,6 @@ export const useApp = create<State>((set, get) => ({
         // The summary reflects the whole stream (52 min in the design), scaled from the session.
         lastSession: { ...live, seconds: Math.max(live.seconds, 3120), peakViewers: Math.max(live.peakViewers, 2940), totalViews: Math.max(live.totalViews, 8412), newFollowers: Math.max(live.newFollowers, 186), commentCount: Math.max(live.commentCount, 1203), giftsEarned: Math.max(live.giftsEarned, 6450) },
       };
-    }),
+    });
+  },
 }));
