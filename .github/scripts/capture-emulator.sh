@@ -24,7 +24,7 @@ set -euxo pipefail
 STACK=${1:?flutter|expo}
 DEVICE=emulator-5554
 REC_LIMIT=180         # seconds (screenrecord max); stops itself and finalizes the mp4 (never kill it). The GIF is cut to the POC_DEMO window, so slow first-launch setup before the walkthrough costs nothing
-GIF_MAX=35            # seconds kept in the GIF at most
+GIF_MAX=60            # seconds kept in the GIF at most (Maestro records only the walkthrough, so this is a cap)
 
 # Start clean: never ship a PNG/GIF left over from the checkout or an earlier attempt, so the
 # ">= 3 PNGs" check cannot pass on old files.

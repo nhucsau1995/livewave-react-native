@@ -63,6 +63,12 @@ appId: com.livewave.app
 - tapOn:
     id: "watch-heart"
     waitToSettleTimeoutMs: 1500
+- tapOn:
+    id: "watch-cc"
+    waitToSettleTimeoutMs: 1500
+- extendedWaitUntil:
+    visible: "LIVE CAPTIONS"
+    timeout: 10000
 - waitForAnimationToEnd:
     timeout: 3000
 - takeScreenshot: 06-watch-live
