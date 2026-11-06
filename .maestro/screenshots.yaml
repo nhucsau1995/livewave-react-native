@@ -1,0 +1,157 @@
+# Stills for the README: one per key screen, taken at the top of each screen once its content
+# is visible. Real taps on testIDs (no deep links). No clearState: the warm-up launch reset it.
+appId: com.livewave.app
+---
+- launchApp
+- runFlow:
+    when:
+      visible: ".*isn't responding.*"
+    commands:
+      - tapOn: "Wait"
+- extendedWaitUntil:
+    visible: "Get started"
+    timeout: 60000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 01-welcome
+- tapOn:
+    id: "get-started"
+- extendedWaitUntil:
+    visible: "Nobody you follow is live"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 02-home-empty
+- tapOn:
+    id: "follow-lena"
+- extendedWaitUntil:
+    visible: "Friday Night House Set"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 03-home
+- tapOn:
+    id: "tab-explore"
+- extendedWaitUntil:
+    visible: "Trending"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 04-explore
+- scrollUntilVisible:
+    element:
+      id: "rising-lena"
+    direction: DOWN
+- tapOn:
+    id: "rising-lena"
+- extendedWaitUntil:
+    visible: "Watch live"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 05-creator-profile
+- tapOn:
+    id: "watch-live"
+- extendedWaitUntil:
+    visible: "Say something.*"
+    timeout: 15000
+- tapOn:
+    id: "watch-heart"
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 06-watch-live
+- tapOn:
+    id: "watch-gift"
+- extendedWaitUntil:
+    visible: "Send a gift"
+    timeout: 15000
+- tapOn:
+    id: "gift-rocket"
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 07-gift-sheet
+- tapOn:
+    id: "send-gift"
+- tapOn:
+    id: "watch-close"
+- extendedWaitUntil:
+    visible: "Watch live"
+    timeout: 15000
+- tapOn:
+    id: "back"
+- extendedWaitUntil:
+    visible: "Trending"
+    timeout: 15000
+- tapOn:
+    id: "tab-golive"
+- extendedWaitUntil:
+    visible: "Stream title"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 08-go-live-setup
+- tapOn:
+    id: "go-live"
+- extendedWaitUntil:
+    visible: "End"
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "Sofia"
+    timeout: 5000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 09-host-live
+- tapOn:
+    id: "open-health"
+- extendedWaitUntil:
+    visible: "Upload bitrate"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 10-stream-health
+- tapOn:
+    id: "back"
+- extendedWaitUntil:
+    visible: "End"
+    timeout: 15000
+- tapOn:
+    id: "end-stream"
+- extendedWaitUntil:
+    visible: "Stream ended"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 11-live-summary
+- scrollUntilVisible:
+    element:
+      id: "back-home"
+    direction: DOWN
+- tapOn:
+    id: "back-home"
+- extendedWaitUntil:
+    visible: "Friday Night House Set"
+    timeout: 15000
+- tapOn:
+    id: "tab-wallet"
+- extendedWaitUntil:
+    visible: "Coin balance"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 12-wallet
+- tapOn:
+    id: "tab-profile"
+- extendedWaitUntil:
+    visible: "This week"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 13-profile
+- tapOn:
+    id: "open-settings"
+- extendedWaitUntil:
+    visible: "Auto-reconnect"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 14-stream-settings

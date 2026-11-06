@@ -86,7 +86,7 @@ export default function LiveSummary() {
 
       <Button testID="save-replay" icon={saved ? 'check' : 'download'} label={saved ? 'Replay saved' : 'Save replay'} onPress={() => setSaved(true)} style={{ marginTop: 16 }} />
       <Button kind="secondary" icon="share" label="Share highlights" style={{ marginTop: 10 }} />
-      <T testID="back-home" variant="label" onPress={() => router.replace('/home')} style={{ textAlign: 'center', color: colors.accentFill, fontFamily: font.semibold, marginTop: 12, paddingVertical: 10, textDecorationLine: 'underline' }}>Back to home</T>
+      <T testID="back-home" variant="label" onPress={() => router.dismissTo('/home')} style={{ textAlign: 'center', color: colors.accentFill, fontFamily: font.semibold, marginTop: 12, paddingVertical: 10, textDecorationLine: 'underline' }}>Back to home</T>
     </Screen>
   );
 }

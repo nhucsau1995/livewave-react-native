@@ -1,0 +1,69 @@
+# Paced walkthrough for screenshots/demo.gif: 9 taps, about 20 s of script. Maestro records
+# the screen itself (startRecording after the welcome screen is up), so JVM start-up and the
+# dialog guard are not in the video. No clearState: the warm-up launch already reset the app.
+appId: com.livewave.app
+---
+- launchApp
+- runFlow:
+    when:
+      visible: ".*isn't responding.*"
+    commands:
+      - tapOn: "Wait"
+- extendedWaitUntil:
+    visible: "Get started"
+    timeout: 60000
+- startRecording: demo
+- tapOn:
+    id: "get-started"
+- extendedWaitUntil:
+    visible: "Nobody you follow is live"
+    timeout: 15000
+- tapOn:
+    id: "follow-lena"
+- extendedWaitUntil:
+    visible: "Friday Night House Set"
+    timeout: 15000
+- tapOn:
+    id: "following-lena"
+- extendedWaitUntil:
+    visible: "Say something.*"
+    timeout: 15000
+- tapOn:
+    id: "watch-gift"
+- extendedWaitUntil:
+    visible: "Send a gift"
+    timeout: 15000
+- tapOn:
+    id: "gift-rocket"
+- tapOn:
+    id: "send-gift"
+- extendedWaitUntil:
+    visible: "Say something.*"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    id: "watch-close"
+- extendedWaitUntil:
+    visible: "Friday Night House Set"
+    timeout: 15000
+- tapOn:
+    id: "tab-golive"
+- extendedWaitUntil:
+    visible: "Stream title"
+    timeout: 15000
+- tapOn:
+    id: "go-live"
+- extendedWaitUntil:
+    visible: "End"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 2500
+- tapOn:
+    id: "open-health"
+- extendedWaitUntil:
+    visible: "Upload bitrate"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- stopRecording
