@@ -1,0 +1,255 @@
+[
+ {
+  "name": "hero-welcome",
+  "file": "assets/images/hero-welcome.jpg",
+  "role": "hero",
+  "screens": [
+   "01-welcome"
+  ],
+  "source": "stitch",
+  "prompt": "Creator streaming live"
+ },
+ {
+  "name": "stitch-logo",
+  "file": "assets/images/stitch-logo.png",
+  "role": "illustration",
+  "screens": [
+   "01-welcome",
+   "02-home",
+   "03-home-empty"
+  ],
+  "source": "stitch",
+  "prompt": "Livewave Wave Logo Mark"
+ },
+ {
+  "name": "avatar-maya",
+  "file": "assets/images/avatar-maya.jpg",
+  "role": "avatar",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Maya Chen"
+ },
+ {
+  "name": "stream-dj-kairo",
+  "file": "assets/images/stream-dj-kairo.jpg",
+  "role": "cover",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "DJ Kairo live stream"
+ },
+ {
+  "name": "avatar-lena",
+  "file": "assets/images/avatar-lena.jpg",
+  "role": "avatar",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Lena Park"
+ },
+ {
+  "name": "avatar-marco",
+  "file": "assets/images/avatar-marco.jpg",
+  "role": "avatar",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Marco Ruiz"
+ },
+ {
+  "name": "avatar-aiko",
+  "file": "assets/images/avatar-aiko.jpg",
+  "role": "avatar",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Aiko Tan"
+ },
+ {
+  "name": "avatar-sam",
+  "file": "assets/images/avatar-sam.jpg",
+  "role": "avatar",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Sam Okafor"
+ },
+ {
+  "name": "stream-pasta",
+  "file": "assets/images/stream-pasta.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Artisanal Handmade Pasta"
+ },
+ {
+  "name": "stream-acoustic",
+  "file": "assets/images/stream-acoustic.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Acoustic Sunday Jam"
+ },
+ {
+  "name": "stream-hiit",
+  "file": "assets/images/stream-hiit.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Full Body Kettlebell HIIT"
+ },
+ {
+  "name": "stream-lisbon",
+  "file": "assets/images/stream-lisbon.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "02-home"
+  ],
+  "source": "stitch",
+  "prompt": "Lisbon Sunset Walking Tour"
+ },
+ {
+  "name": "empty-studio-desk",
+  "file": "assets/images/empty-studio-desk.jpg",
+  "role": "illustration",
+  "screens": [
+   "03-home-empty"
+  ],
+  "source": "stitch",
+  "prompt": "Quiet home studio desk with smartphone stand and unlit ring light"
+ },
+ {
+  "name": "stream-painter",
+  "file": "assets/images/stream-painter.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "04-explore"
+  ],
+  "source": "stitch",
+  "prompt": "Woman painting in art studio"
+ },
+ {
+  "name": "stream-chef-plating",
+  "file": "assets/images/stream-chef-plating.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "04-explore"
+  ],
+  "source": "stitch",
+  "prompt": "Chef plating gourmet dish"
+ },
+ {
+  "name": "stream-saxophone",
+  "file": "assets/images/stream-saxophone.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "04-explore"
+  ],
+  "source": "stitch",
+  "prompt": "Street musician saxophone at night"
+ },
+ {
+  "name": "cover-lena-studio",
+  "file": "assets/images/cover-lena-studio.jpg",
+  "role": "cover",
+  "screens": [
+   "05-creator-profile"
+  ],
+  "source": "stitch",
+  "prompt": "Lena Park Studio Cover"
+ },
+ {
+  "name": "replay-piano",
+  "file": "assets/images/replay-piano.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "05-creator-profile"
+  ],
+  "source": "stitch",
+  "prompt": "Piano & Vocal Session"
+ },
+ {
+  "name": "live-lena",
+  "file": "assets/images/live-lena.jpg",
+  "role": "hero",
+  "screens": [
+   "06-watch-live"
+  ],
+  "source": "stitch",
+  "prompt": "Lena Park playing acoustic guitar and singing live in a warm studio"
+ },
+ {
+  "name": "host-preview",
+  "file": "assets/images/host-preview.jpg",
+  "role": "hero",
+  "screens": [
+   "08-go-live-setup"
+  ],
+  "source": "stitch",
+  "prompt": "Authentic candid documentary portrait photography of a smiling charismatic young Latino man in his late 20s wearing a casual henley shirt holding a ceramic coffee mug, looking directly into the smartphone front camera as if preparing to stream live, bright sunlit modern apartment kitchen studio background with soft warm morning light and plants, natural depth of field, realistic textures, real photo, no CGI, no render, photorealistic."
+ },
+ {
+  "name": "live-host-coffee",
+  "file": "assets/images/live-host-coffee.jpg",
+  "role": "hero",
+  "screens": [
+   "09-host-live",
+   "13-profile"
+  ],
+  "source": "stitch",
+  "prompt": "Host streaming live"
+ },
+ {
+  "name": "avatar-kenji",
+  "file": "assets/images/avatar-kenji.jpg",
+  "role": "avatar",
+  "screens": [
+   "09-host-live"
+  ],
+  "source": "stitch",
+  "prompt": "Editorial close-up portrait of Kenji, a stylish Japanese young man with messy dark hair in a bright cafe setting, natural warm lighting, authentic smartphone avatar photography, high quality."
+ },
+ {
+  "name": "avatar-sofia",
+  "file": "assets/images/avatar-sofia.jpg",
+  "role": "avatar",
+  "screens": [
+   "11-live-summary"
+  ],
+  "source": "stitch",
+  "prompt": "A portrait photography shot of Sofia, a stylish woman with warm lighting and a natural smile in a modern cafe setting. The photo highlights clean, realistic colors matching a violet and neutral palette with high aesthetic clarity."
+ },
+ {
+  "name": "replay-painting",
+  "file": "assets/images/replay-painting.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "13-profile"
+  ],
+  "source": "stitch",
+  "prompt": "Painting in the Studio"
+ },
+ {
+  "name": "replay-city-walk",
+  "file": "assets/images/replay-city-walk.jpg",
+  "role": "thumbnail",
+  "screens": [
+   "13-profile"
+  ],
+  "source": "stitch",
+  "prompt": "Late Night City Stroll"
+ }
+]
